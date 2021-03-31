@@ -5,7 +5,6 @@
   "bugs": {
     "url": "https://github.com/IceTank/mineflayer-panorama/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "express": "^4.17.1",
     "node-canvas-webgl": "^0.2.6",
@@ -24,9 +23,6 @@
     "mineflayer": "^3.6.0",
     "standard": "^16.0.1"
   },
-  "files": [
-    "lib/**/*"
-  ],
   "homepage": "https://github.com/IceTank/mineflayer-panorama#readme",
   "keywords": [
     "mineflayer",
@@ -41,8 +37,7 @@
   },
   "scripts": {
     "clean": "rm -rf lib",
-    "prepare": "tsc && require-self",
-    "test": "test",
+    "prepare": "node lib/setup.js && require-self",
     "fix": "standard --fix",
     "lint": "standard"
   }

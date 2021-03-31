@@ -1,44 +1,32 @@
-<h1 align="center">mineflayer-plugin-template</h1>
-<p align="center"><i>A simple template repository for developing Mineflayer plugins through Typescript.</i></p>
+<h1 align="center">mineflayer-panorama</h1>
 
 <p align="center">
-  <img src="https://github.com/TheDudeFromCI/mineflayer-plugin-template/workflows/Build/badge.svg" />
-  <img src="https://img.shields.io/npm/v/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/repo-size/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/npm/dm/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/contributors/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/license/TheDudeFromCI/mineflayer-plugin-template" />
+ 
+  <img src="https://img.shields.io/npm/v/mineflayer-panorama" />
+  <img src="https://img.shields.io/github/repo-size/IceTank/mineflayer-panorama" />
+  <img src="https://img.shields.io/npm/dm/mineflayer-panorama" />
+  <img src="https://img.shields.io/github/contributors/IceTank/mineflayer-panorama" />
+  <img src="https://img.shields.io/github/license/IceTank/mineflayer-panorama" />
 </p>
 
 ---
+Make Simple Panorama images and view them in your browser!
 
 ### Getting Started
 
 This plugin is built using Node and can be installed using:
-```bash
-npm install --save mineflayer-plugin-template
-```
 
-This plugin has a relies on [random-plugin]() for a-b-c. That plugin should be loaded first.
+```bash
+git clone https://github.com/IceTank/mineflayer-panorama.git
+npm install
+```
 
 ### Simple Bot
 
 The brief description goes here.
 
-```js
-// Create your bot
-const mineflayer = require("mineflayer");
-const bot = mineflayer.createBot({ username: "Player" });
-
-// Do stuff
-bot.doStuff()
-```
 
 ### Documentation
-
-[API](https://github.com/TheDudeFromCI/mineflayer-plugin-template/blob/master/docs/api.md)
-
-[Examples](https://github.com/TheDudeFromCI/mineflayer-plugin-template/tree/master/examples)
 
 ### License
 
