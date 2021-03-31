@@ -1,6 +1,6 @@
 const mineflayer = require('mineflayer')
 const panorama = require('../../index')
-// const Vec3 = require('vec3')
+const server = require('../../lib/web')
 
 if (process.argv.length < 4 || process.argv.length > 6) {
   console.log('Usage : node screenshot.js <host> <port> [<name>] [<password>]')
@@ -14,11 +14,17 @@ const bot = mineflayer.createBot({
   password: process.argv[5]
 })
 
+const web = new server.web(bot, 8080)
+
 bot.on('spawn', async () => {
   bot.loadPlugin(panorama.image)
   await bot.waitForChunksToLoad()
+  if (!web.READY) {
+    await web.on('ready')
+  }
+  console.info('Ready to use')
   bot.on('camera_ready', async () => {
-    await bot.panoramaImage.takePanoramaPictures('NewTest')
+    // await bot.panoramaImage.takePanoramaPictures('NewTest')
   })
 })
 

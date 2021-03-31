@@ -7,6 +7,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "express": "^4.17.1",
     "node-canvas-webgl": "^0.2.6",
     "prismarine-viewer": "^1.19.2",
     "three": "^0.127.0",

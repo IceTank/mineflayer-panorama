@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>three.module.js webgl - panorama</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="container"></div>
+<div id="info">
+  <a href="https://threejs.org" target="_blank" rel="noopener">three.module.js</a> webgl - cube panorama demo
+</div>
+
+<script type="module">
+
+  import * as THREE from '../js/three.module.js';
+
+  let camera, controls;
+  let renderer;
+  let scene;
+  let isUserInteracting = false,
+    onPointerDownMouseX = 0, onPointerDownMouseY = 0,
+    lon = 0, onPointerDownLon = 0,
+    lat = 0, onPointerDownLat = 0,
+    phi = 0, theta = 0;
+
+  init();
+  animate();
+
+  function init() {
+    const container = document.getElementById( 'container' );
+
+    console.info(THREE)
+    renderer = new THREE.WebGLRenderer();
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    container.appendChild( renderer.domElement );
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 100 );
+    camera.position.z = 0.01;
+
+    const textures = getTexturesFromAtlasFile( "/textures/current.jpeg", 6 );
+
+    const materials = [];
+    for ( let i = 0; i < 6; i ++ ) {
+      materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
+    }
+
+    const skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
+    skyBox.geometry.scale( 1, 1, - 1 );
+    scene.add( skyBox );
+
+    container.style.touchAction = 'none';
+    container.addEventListener( 'pointerdown', onPointerDown );
+
+    document.addEventListener( 'dragenter', function () {
+      document.body.style.opacity = 0.5;
+    });
+
+    document.addEventListener( 'dragleave', function () {
+      document.body.style.opacity = 1;
+    });
+    window.addEventListener( 'resize', onWindowResize );
+  }
+
+  function onPointerDown( event ) {
+    if ( event.isPrimary === false ) return;
+    isUserInteracting = true;
+    onPointerDownMouseX = event.clientX;
+    onPointerDownMouseY = event.clientY;
+    onPointerDownLon = lon;
+    onPointerDownLat = lat;
+    document.addEventListener( 'pointermove', onPointerMove );
+    document.addEventListener( 'pointerup', onPointerUp );
+  }
+
+  function onPointerMove(event) {
+    if ( event.isPrimary === false ) return;
+    lon = ( onPointerDownMouseX - event.clientX ) * 0.1 + onPointerDownLon;
+    lat = ( event.clientY - onPointerDownMouseY ) * 0.1 + onPointerDownLat;
+  }
+
+  function onPointerUp(event) {
+    if ( event.isPrimary === false ) return;
+    isUserInteracting = false;
+    document.removeEventListener( 'pointermove', onPointerMove );
+    document.removeEventListener( 'pointerup', onPointerUp );
+  }
+
+  function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
+    const textures = [];
+    for ( let i = 0; i < tilesNum; i ++ ) {
+      textures[ i ] = new THREE.Texture();
+    }
+    const imageObj = new Image();
+    imageObj.onload = function () {
+      let canvas, context;
+      const tileWidth = imageObj.height / 2;
+      const coordinates = [
+        { x: 0, y: 0 }, { x: tileWidth, y: 0 }, { x: tileWidth * 2, y: 0 },
+        { x: 0, y: tileWidth }, { x: tileWidth, y: tileWidth }, { x: tileWidth * 2, y: tileWidth }
+      ]
+      for ( let i = 0; i < textures.length; i ++ ) {
+        canvas = document.createElement( 'canvas' );
+        context = canvas.getContext( '2d' );
+        canvas.height = tileWidth;
+        canvas.width = tileWidth;
+        context.drawImage( imageObj, coordinates[i].x, coordinates[i].y, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+        textures[ i ].image = canvas;
+        textures[ i ].needsUpdate = true;
+      }
+    };
+    imageObj.src = atlasImgUrl;
+    return textures;
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
+  function update() {
+    // Dont turn
+    // if ( isUserInteracting === false ) {
+    //   lon += 0.1;
+    // }
+
+    lat = Math.max( - 85, Math.min( 85, lat ) );
+    phi = THREE.MathUtils.degToRad( 90 - lat );
+    theta = THREE.MathUtils.degToRad( lon );
+
+    const x = 500 * Math.sin( phi ) * Math.cos( theta );
+    const y = 500 * Math.cos( phi );
+    const z = 500 * Math.sin( phi ) * Math.sin( theta );
+
+    camera.lookAt( x, y, z );
+    renderer.render( scene, camera );
+  }
+
+  function animate() {
+    requestAnimationFrame( animate );
+    renderer.render( scene, camera );
+    update()
+  }
+
+</script>
+</body>
+</html>
