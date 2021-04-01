@@ -56,6 +56,26 @@ The webserver opens a website on a given port and serves the current panorama vi
 For an example see: `example/browserCubeMap/index.js`. 
 Note: three.module.js has to be provided in `public/js`. If `npm install` did not download it, it has to be added manually. 
 
+### Docker
+
+It is possible to run this in a docker container by building the provided Dockerfile:
+
+```bash
+cd mineflayer-panorama
+docker build . -t panorama-bot 
+# can be any name not only panorama-bot
+
+docker run --rm -p 8080:8080 --name pano-bot panorama-bot 
+# pano-bot is the container name
+# panorama-bot is the image name; 
+# -p exposes the port Hostport:8080
+
+# If for whatever reason the THREE module has not been downloaded by npm you can navigate into the container:
+docker exec -it <container id> /bin/bash 
+# and execture the npm install script again
+> npm run prepare
+```
+
 
 ### Documentation
 
