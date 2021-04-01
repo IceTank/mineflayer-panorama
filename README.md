@@ -12,6 +12,8 @@
 ---
 Make Simple Panorama images and view them in your browser!
 
+![Download (1)](https://user-images.githubusercontent.com/61137113/113225697-8b005c00-928e-11eb-8bef-4ee1251cabdb.png)
+
 ### Getting Started
 
 This plugin is built using Node and can be installed using:
