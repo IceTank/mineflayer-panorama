@@ -58,7 +58,8 @@ Note: three.module.js has to be provided in `public/js`. If `npm install` did no
 
 ### Docker
 
-It is possible to run this in a docker container by building the provided Dockerfile:
+It is possible to run this in a docker container by building the provided Dockerfile. 
+The Dockerfile builds an image with the example script in `example/browserCubeMap/index.js`. The given ip address and port might be different and might not work for your setup.
 
 ```bash
 cd mineflayer-panorama
