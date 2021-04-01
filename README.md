@@ -18,6 +18,7 @@ This plugin is built using Node and can be installed using:
 
 ```bash
 git clone https://github.com/IceTank/mineflayer-panorama.git
+cd mineflayer-panorama
 npm install
 ```
 
