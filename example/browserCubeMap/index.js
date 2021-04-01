@@ -14,17 +14,16 @@ const bot = mineflayer.createBot({
   password: process.argv[5]
 })
 
+const web = new server.web(bot, 8080)
+
 bot.on('spawn', async () => {
   console.info('Bot spawned')
   bot.loadPlugin(panorama.image)
-  // await bot.waitForChunksToLoad()
   if (!web.READY) {
     await new Promise((resolve) => {web.on('ready', resolve)})
   }
+  await bot.waitForChunksToLoad()
   console.info('Ready to use')
-  bot.on('camera_ready', async () => {
-    // await bot.panoramaImage.takePanoramaPictures('NewTest')
-  })
 })
 
 bot.on('end', (reason) => {
@@ -34,5 +33,3 @@ bot.on('end', (reason) => {
 bot.on('error', (err) => {
   console.error(err)
 })
-
-const web = new server.web(bot, 8080)

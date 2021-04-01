@@ -24,9 +24,37 @@ cd mineflayer-panorama
 npm install
 ```
 
-### Simple Bot
+#### Example
 
-The brief description goes here.
+For use as a plugin to make Panorama Images:
+```js
+const panorama = require('./index')
+const mineflayer = require('mineflayer')
+const fs = require('fs')
+const bot = mineflayer.createBot({
+  host: 'localhost'
+})
+
+bot.on('spawn', async () => {
+  console.info('Bot spawned')
+  bot.loadPlugin(panorama.image)
+  bot.on('camera_ready', async () => {
+    await bot.waitForChunksToLoad()
+    console.info('Ready to use')
+    let imageStream = await bot.panoramaImage.takePanoramaPictures()
+    let image = fs.createWriteStream('panorama1.jpeg')
+    imageStream.pipe(image)
+    image.on('finish', () => {
+      console.info('Wrote panorama image panorama1.jpeg')
+    })
+  })
+})
+```
+
+This plugin also includes a webserver that can be used to view the generated images.
+The webserver opens a website on a given port and serves the current panorama view of the bot and a Panorama viewer.
+For an example see: `example/browserCubeMap/index.js`. 
+Note: three.module.js has to be provided in `public/js`. If `npm install` did not download it, it has to be added manually. 
 
 
 ### Documentation
