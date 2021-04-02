@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Start the container with the BrowserCubeMap example script
-CMD ["sh", "-c", "xvfb-run --auto-servernum --server-num=1 --server-args='-ac -screen 0 1280x1024x24' node example/browserCubeMap/index.js 192.168.178.38 25565 test1"]
+CMD xvfb-run --auto-servernum --server-num=1 --server-args='-ac -screen 0 1280x1024x24' node example/browserCubeMap/index.js $HOST $PORT $USERNAME $PASSWORD
