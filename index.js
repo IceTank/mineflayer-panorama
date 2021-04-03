@@ -1,4 +1,4 @@
-const Camera = require('./lib/camera')
+const Camera = require(__dirname + '/lib/camera')
 
 function panoramaImage (bot) {
   bot.panoramaImage = {}
