@@ -20,7 +20,7 @@ bot.on('spawn', async () => {
   console.info('Bot spawned')
   bot.loadPlugin(panorama.image)
   if (!web.READY) {
-    await new Promise((resolve) => {web.on('ready', resolve)})
+    await new Promise((resolve) => { web.on('ready', resolve) })
   }
   await bot.waitForChunksToLoad()
   console.info('Ready to use')

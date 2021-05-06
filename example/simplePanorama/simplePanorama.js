@@ -48,14 +48,14 @@ bot.on('chat', async (username, message) => {
       return
     }
     bot.chat('Taking panorama Image')
-    let imageName = await takePanorama(fileName, pos)
+    const imageName = await takePanorama(fileName, pos)
     bot.chat('Finished saving ' + imageName)
   } else if (message === 'come') {
     if (!bot.players[username]) {
       bot.chat('I can\'t see you')
       return
     }
-    let {x, y, z} = bot.players[username].entity.position
+    const { x, y, z } = bot.players[username].entity.position
     bot.pathfinder.setGoal(new goals.GoalNear(x, y, z, 2))
   } else if (message === 'stop') {
     bot.pathfinder.setGoal(null)
@@ -64,7 +64,7 @@ bot.on('chat', async (username, message) => {
       bot.chat('I can\'t see you')
       return
     }
-    let target = bot.players[username].entity
+    const target = bot.players[username].entity
     bot.pathfinder.setGoal(new goals.GoalFollow(target, 2), true)
   } else if (message === 'f') {
     bot.chat('F in chat')
@@ -73,8 +73,8 @@ bot.on('chat', async (username, message) => {
   }
 })
 
-async function takePanorama(fileName, pos) {
-  let fileStream = await bot.panoramaImage.takePanoramaPictures(pos)
+async function takePanorama (fileName, pos) {
+  const fileStream = await bot.panoramaImage.takePanoramaPictures(pos)
   if (fileName === 'next') {
     fileName = 'image' + String(imageCounter).padStart(4, '0')
     imageCounter++
@@ -90,14 +90,16 @@ async function takePanorama(fileName, pos) {
     }
   }
   console.info('Writing file')
-  let file = fs.createWriteStream('./screenshots/' + fileName + '.jpeg')
+  const file = fs.createWriteStream('./screenshots/' + fileName + '.jpeg')
   fileStream.pipe(file)
   fileStream.on('error', (err) => {
     console.error(err)
   })
-  return new Promise((resolve) => { file.on('finish', () => {
-    resolve(fileName)
-  }) })
+  return new Promise((resolve) => {
+    file.on('finish', () => {
+      resolve(fileName)
+    })
+  })
 }
 
 bot.on('end', (reason) => {
