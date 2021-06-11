@@ -62,6 +62,9 @@ The webserver opens a website on a given port and serves the current panorama vi
 For an example see: `example/browserCubeMap/index.js`. 
 Note: three.module.js has to be provided in `public/js`. If `npm install` did not download it, it has to be added manually. 
 
+## Running on Windows
+The rendering is done by node-canvas-webgl which is tricky to install on Windows. I recommend using a unix based operating system or Docker to run this plugin.
+
 ## Documentation
 
 ### `async bot.panoramaImage.takePanoramaPictures(camPos)`
