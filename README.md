@@ -14,6 +14,12 @@ Make Simple Panorama images and view them in your browser!
 
 ![Download (1)](https://user-images.githubusercontent.com/61137113/113225697-8b005c00-928e-11eb-8bef-4ee1251cabdb.png)
 
+### What is this?
+
+This is a plugin for [Mineflayer](https://github.com/PrismarineJS/mineflayer) a high level Node.js API for creating Minecraft Bots.
+As most bots you run with mineflayer don't have any graphical interface its hard to visualize what is happening to the bot without joining the same server.
+With this plugin you can get a glimpse into what the world the bot is in looks like. Or you can just make pretty panorama images and save them for later use.
+
 ### Getting Started
 
 This plugin is built using Node and can be installed using:
