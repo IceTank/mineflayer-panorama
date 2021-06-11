@@ -76,6 +76,18 @@ Takes a picture of the current world at the bots current position looking at the
 * `lookAt` - a `Vec3` like object of the point the bot should look at
 * `name` - the name the jpeg image will be saved as
 
+### `WebServer(bot, PORT)`
+A class providing a express app to host the panorama viewer on. 
+When the page is opened the web server automatically calls `bot.panoramaImage.takePanoramaImage` to take an up to date panorama image to display in the panorama viewer.
+* `bot` - the mineflayer bot instance
+* `PORT` - the port the express app should listen on
+
+### `WebServer.READY` - `boolean` if the express app is ready
+
+### Events
+### `"ready"` 
+Emitted when the express app is ready and running
+
 ## Docker
 
 It is possible to run this in a docker container by building the provided Dockerfile. 
