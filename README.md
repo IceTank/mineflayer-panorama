@@ -84,8 +84,9 @@ docker exec -it <container id> /bin/bash
 > npm run prepare
 ```
 
-
-### Documentation
+### TODOs
+* Add panorama Video streaming/saving
+* Add entitys to the panorama view
 
 ### License
 
