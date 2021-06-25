@@ -2,3 +2,4 @@
 /example/screenshots/screenshots/*
 /package-lock.json
 /screenshots
+node_modules
