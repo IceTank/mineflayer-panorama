@@ -6,14 +6,12 @@ RUN apt-get install -y xserver-xorg-dev libxi-dev xserver-xorg-dev libxext-dev x
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
+COPY . .
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 8080
 
 # Start the container with the BrowserCubeMap example script
 # xvfb-run and the arguments behide it are needed for node-canvas-webgl to work. 
-CMD xvfb-run --auto-servernum --server-num=1 --server-args='-ac -screen 0 1280x1024x24' node example/browserCubeMap/index.js $HOST $PORT $USERNAME $PASSWORD
+CMD xvfb-run --auto-servernum --server-num=1 --server-args='-ac -screen 0 1280x1024x24' node example/browserCubeMap/browserView.js $HOST $PORT $USERNAME $PASSWORD
