@@ -4,9 +4,15 @@ function panoramaImage (bot) {
   bot.panoramaImage = {}
   const cam = new Camera(bot)
 
-  bot.panoramaImage.takePicture = cam.takePicture
+  // Don't touch things break
+  bot.panoramaImage.takePicture = async function (name) {
+    return cam.takePicture(name)
+  }
 
-  bot.panoramaImage.takePanoramaPictures = cam.takePanoramaPictures
+  // Don't touch things break
+  bot.panoramaImage.takePanoramaPictures = async function (name) {
+    return cam.takePanoramaPictures(name)
+  }
 }
 
 module.exports = {
