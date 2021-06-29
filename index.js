@@ -5,13 +5,13 @@ function panoramaImage (bot) {
   const cam = new Camera(bot)
 
   // Don't touch things break
-  bot.panoramaImage.takePicture = async function (name) {
-    return cam.takePicture(name)
+  bot.panoramaImage.takePicture = async function (point, name) {
+    return cam.takePicture(point, name)
   }
 
   // Don't touch things break
-  bot.panoramaImage.takePanoramaPictures = async function (name) {
-    return cam.takePanoramaPictures(name)
+  bot.panoramaImage.takePanoramaPictures = async function (camPos) {
+    return cam.takePanoramaPictures(camPos)
   }
 }
 
