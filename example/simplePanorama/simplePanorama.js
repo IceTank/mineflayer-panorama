@@ -21,7 +21,7 @@ const bot = mineflayer.createBot({
 
 bot.on('spawn', async () => {
   console.info('Bot spawned')
-  bot.loadPlugins([panorama.image, pathfinder])
+  bot.loadPlugins([panorama.panoramaImage, pathfinder])
   bot.pathfinder.setMovements(new Movements(bot, require('minecraft-data')(bot.version)))
   await bot.waitForChunksToLoad()
   bot.chat('Ready!')

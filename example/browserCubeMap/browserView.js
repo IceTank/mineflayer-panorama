@@ -4,7 +4,7 @@
  */
 
 const mineflayer = require('mineflayer')
-const panorama = require('../../index')
+const panorama = require('../../index').panoramaImage
 const server = require('../../lib/web')
 
 if (process.argv.length < 3 || process.argv.length > 6) {
@@ -23,7 +23,7 @@ const web = new server.web(bot, 8080)
 
 bot.on('spawn', async () => {
   console.info('Bot spawned')
-  bot.loadPlugin(panorama.image)
+  bot.loadPlugin(panorama)
   if (!web.READY) {
     await new Promise((resolve) => { web.once('ready', resolve) })
   }
