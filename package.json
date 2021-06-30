@@ -36,7 +36,6 @@
     "url": "https://github.com/IceTank/mineflayer-panorama.git"
   },
   "scripts": {
-    "prepare": "node lib/setup.js",
     "fix": "standard --fix",
     "lint": "standard"
   }

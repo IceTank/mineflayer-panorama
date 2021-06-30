@@ -13,7 +13,7 @@ RUN npm install
 COPY lib/* lib/
 COPY public/* public/
 
-RUN npm run prepare
+RUN npm run download_three
 
 COPY . .
 

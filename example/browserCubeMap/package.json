@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "prepare": "node lib/setup.js"
+    "download_three": "node lib/download_three.js"
   },
   "dependencies": {
     "express": "^4.17.1",
