@@ -93,25 +93,12 @@ Emitted when the express app is ready and running
 
 ## Docker
 
-It is possible to run this in a docker container by building the provided Dockerfile. 
-The Dockerfile builds an image with the example script in `example/browserCubeMap/index.js`.
-
-```bash
-cd mineflayer-panorama
-docker build . -t panorama-bot 
-# can be any name not only panorama-bot
-
-docker run --rm -p 8080:8080 --name pano-bot -e HOST=<Host> -e PORT=<PORT> -e USERNAME=<username> -e PASSWORD=<password> panorama-bot 
-# pano-bot is the container name
-# panorama-bot is the image name; 
-# -p exposes the port Hostport:8080
-# -e USERNAME and -e PASSWORD are only required for online servers
-
-# If for whatever reason the THREE module has not been downloaded by npm you can navigate into the container:
-docker exec -it <container id> /bin/bash 
-# and execture the npm install script again
-> npm run prepare
+Example Dockerfiles are provided in the examples.
+To build an example Dockerfile use this command:
 ```
+docker build . -f .\example\<the example>\Dockerfile -t <image name>
+```
+For running the container read the README.md files in the example folders.
 
 ## TODO
 * Add panorama Video streaming/saving
