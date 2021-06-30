@@ -8,9 +8,10 @@ docker run --rm -p 8080:8080 --name pano-bot -e HOST=<Host> -e PORT=<PORT> -e US
 # panorama-bot is the image name; 
 # -p exposes the port Hostport:8080
 # -e USERNAME and -e PASSWORD are only required for online servers
+# for connecting to docker host localhost use: host.docker.internal as HOST
 
 # If for whatever reason the THREE module has not been downloaded by npm you can navigate into the container:
 docker exec -it <container id> /bin/bash 
 # and execture the npm install script again
-> npm run prepare
+> npm run download_three
 ```
