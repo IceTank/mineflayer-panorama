@@ -6,9 +6,16 @@ RUN apt-get install -y xserver-xorg-dev libxi-dev xserver-xorg-dev libxext-dev x
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY example/browserCubeMap/package.json .
 
 RUN npm install
+
+COPY lib/* lib/
+COPY public/* public/
+
+RUN npm run prepare
+
+COPY . .
 
 EXPOSE 8080
 

@@ -21,13 +21,13 @@ const bot = mineflayer.createBot({
 
 const web = new server.web(bot, 8080)
 
-bot.on('spawn', async () => {
+bot.once('spawn', async () => {
   console.info('Bot spawned')
   bot.loadPlugin(panorama)
-  if (!web.READY) {
-    await new Promise((resolve) => { web.once('ready', resolve) })
-  }
-  await bot.waitForChunksToLoad()
+  // if (!web.READY) {
+  //   await new Promise((resolve) => { web.once('ready', resolve) })
+  // }
+  // await bot.waitForChunksToLoad()
   console.info('Ready to use')
 })
 
