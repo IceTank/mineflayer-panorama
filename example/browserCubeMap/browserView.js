@@ -19,17 +19,20 @@ const bot = mineflayer.createBot({
   password: process.argv[5]
 })
 
-const web = new server.web(bot, 8080)
-
 bot.once('spawn', async () => {
   console.info('Bot spawned')
   bot.loadPlugin(panorama)
+  new server.web(bot, 8080)
   // if (!web.READY) {
   //   await new Promise((resolve) => { web.once('ready', resolve) })
   // }
   // await bot.waitForChunksToLoad()
   console.info('Ready to use')
 })
+
+bot.on('chat', (_, message) => {
+  if (message === 'exit') process.exit(0)
+}) 
 
 bot.on('kicked', (reason) => {
   console.info('Kicked for reason', reason)
