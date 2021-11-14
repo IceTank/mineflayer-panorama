@@ -7,9 +7,10 @@ RUN apt-get install -y xserver-xorg-dev libxi-dev xserver-xorg-dev libxext-dev x
 WORKDIR /usr/src/app
 
 COPY example/browserCubeMap/package.json package.json
+COPY lib/download_three.js lib/download_three.js
 
 RUN npm install
-
+RUN npm run postinstall
 
 COPY . .
 
