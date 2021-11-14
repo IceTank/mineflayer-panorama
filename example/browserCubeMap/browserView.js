@@ -23,10 +23,6 @@ bot.once('spawn', async () => {
   console.info('Bot spawned')
   bot.loadPlugin(panorama)
   new server.web(bot, 8080)
-  // if (!web.READY) {
-  //   await new Promise((resolve) => { web.once('ready', resolve) })
-  // }
-  // await bot.waitForChunksToLoad()
   console.info('Ready to use')
 })
 
